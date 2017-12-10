@@ -4,7 +4,7 @@ function binaryAgent(str) {
   var arr = str.split(" ");
   // loop through each array element
   for (var i=0; i<arr.length; i++) {
-    // convert binary to decimal
+    // convert binary to decimal number
     var dec = parseInt(arr[i], 2)
     // convert number to character 
     var char = String.fromCharCode(dec);
