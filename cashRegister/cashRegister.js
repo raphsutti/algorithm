@@ -14,35 +14,43 @@ function checkCashRegister(price, cash, cid) {
   // Change required
   var change = cash - price;
   // Total cash in register
-  var totalCid = cid.reduce(function(acc, next) {
-    return acc + next[1];
+  var totalCid = cid.reduce(function(total, amount) {
+    return total + amount[1];
   }, 0.0);
-  // Check if total cash less or equal to change
+  // check if total cash is less or equal to change
   if (totalCid < change) {
-    return "Insufficient Funds";
+    return 'Insufficient Funds';
   } else if (totalCid === change) {
-    return "Closed";
+    return 'Closed';
   }
-  // reversed cid to decending order
+  
+  // reverse cid
   cid = cid.reverse();
   
-  var result = denom.reduce(function(acc,next,index) {
-    if (change >= next.value) {
-      var currVal = 0.0;
-      while (change >= next.value && cid[index][1] >= next.value) {
-        currVal += next.value;
-        change -= next.value;
-        change = Math.round(change * 100) / 100;
-        cid[index][1] -= next.value;
- 
+  // reduce through denom and update cid
+  var result = denom.reduce(function(total,amount,index){
+    if(change >= amount.value) {
+      // current change to be given
+      var current = 0.0;
+      // while loop through denom
+      // for that current denomination
+      while (change >= amount.value && cid[index][1] >= amount.value) {
+        // add current value with current denom
+        current += amount.value
+        // remove required change as change now added to current change to be given
+        change -= amount.value
+        // remove decimal error
+        change = Math.round(change *100) / 100;
+        // remove cash from cid
+        cid[index][1] -= amount.value;
       }
-      acc.push([next.name, currVal]);
-      return acc;
+      total.push([amount.name, current]);
+      return total;
     } else {
-      return acc;
+      return total;
     }
   }, []);
-  return result.length > 0 && change === 0 ? result : 'Insufficient Funds';
+  return result.length > 0 && change === 0 ? result: 'Insufficient Funds';
 }
 
 checkCashRegister(19.50, 20.00, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1.00], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])
