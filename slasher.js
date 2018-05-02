@@ -1,7 +1,10 @@
 // remove 'howMany' elements from head of arr
 function slasher(arr, howMany) {
-  // it doesn't always pay to be first
-  return arr.slice(howMany, arr.length);
+  // using slice
+  // return arr.slice(howMany, arr.length);
+  // using splice
+  arr.splice(0, howMany);
+  return arr;
 }
 
 slasher([1, 2, 3], 2);
