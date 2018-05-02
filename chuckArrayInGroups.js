@@ -1,14 +1,13 @@
-
+// returns 2D array by group with length of size
 function chunkArrayInGroups(arr, size) {
-  // Break it up.
-  var arrSliced = []; 
-  for (var i = 0; i < arr.length/size; i++) {
-    var arrPush = arr.slice(i*size, size+i*size)
-    arrSliced.push(arrPush);
-//     arrSliced = arr.push(arr.slice(i, 2))
-    //arrSliced.push(arr.slice(arr[i+i],size+i));
+  // blank array to be pushed
+  var resultArr = [];
+  // choose to skip indexes by size count
+  for (var i=0;i<arr.length;i+=size) {
+    // push each group into new array
+    resultArr.push(arr.slice(i,i+size));
   }
-  return arrSliced;
+  return resultArr;
 }
 
-chunkArrayInGroups([0, 1, 2, 3, 4, 5], 3);
+chunkArrayInGroups(["a", "b", "c", "d"], 2);
