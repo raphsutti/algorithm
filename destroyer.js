@@ -15,4 +15,15 @@ function destroyer(arr) {
 //   });
 // }
 
+// using call and filter
+// function destroyer(arr) {
+//   // Remove all the values
+//   var array = arguments[0];
+//   var slicedArgs = Array.prototype.slice.call(arguments, 1);
+//   var filtered = array.filter(x => slicedArgs.indexOf(x)<0)
+//   return filtered;
+// }
+
+
+
 destroyer([1, 2, 3, 1, 2, 3], 2, 3);
