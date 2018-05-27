@@ -10,7 +10,7 @@ function convertToRoman(num) {
     } 
   } 
 
-  return result 
+  return result;
 } 
 
 convertToRoman(506); 
