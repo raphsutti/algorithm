@@ -2,11 +2,15 @@ function pigIt(str){
   words = str.split(" ")
   result = ""
   words.forEach((word) => {
-    chars = word.split("")
-    firstChar = chars.shift(0)
-    newWord =[]
-    newWord.push(chars.join(""),firstChar,"a","y")
-    result += newWord.join("") + " "
+    if(word !== "!" && word !== "?") {
+    	chars = word.split("")
+    	firstChar = chars.shift(0)
+    	newWord =[]
+    	newWord.push(chars.join(""),firstChar,"a","y")
+    	result += newWord.join("") + " "
+	} else {
+		result += word + " "
+	}
   })
   return result.trimRight()
 }
